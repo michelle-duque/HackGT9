@@ -49,12 +49,20 @@ class StatsPageState extends State<StatsPage> {
             GestureDetector(
               onTap: () => Navigator.of(context).pop(),
               child: Hero(
-                tag: 'omagotchi',
-                child: Image.network(
-                    'https://images.cults3d.com/VZbUtir7YbI0hWo40lcqHoMZcXM=/516x516/filters:format(webp)/https://files.cults3d.com/uploaders/14743537/illustration-file/de3bc5be-56ff-416d-92c2-cb8fd0a8c622/PIC1.jpg',
-                scale: 4.0,),
-              ),
+      tag: 'omagotchi',
+      child: Container(
+        height: 129,
+        width: 129,
+        child: Stack(children: [
+            AnimatedPositioned(
+              height: 129,
+              width: 129,
+              duration: const Duration(milliseconds: 200),
+              child: Image.asset('assets/images/default_OMi.webp'),
             ),
+        ]),
+      )),
+    ),
             const Spacer(),
             Center(
               child: Text('Stats Page'),

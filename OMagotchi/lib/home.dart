@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:omagotchi/omagotchi.dart';
 import 'package:omagotchi/settings.dart';
@@ -25,14 +27,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Omagotchi avatar;
+  Omagotchi avatar = Omagotchi(name: 'Chester', imagePath: 'no image');
+  double avatarPosition = 0;
+  Curve positionCurve = Curves.easeOutSine;
 
   @override
   void initState() {
     // TODO: implement saved avatars
     super.initState();
-    avatar = Omagotchi(name: 'Chester', imagePath: 'no image');
   }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -47,18 +51,25 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           shape: const BeveledRectangleBorder(),
           elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.transparent),
       drawer: Drawer(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(50),
                 bottomRight: Radius.circular(50))),
         child: ListView(
           children: [
-            DrawerHeader(child: Text('This is a drawer header')),
-            ListTile(
-              title: const Text('Completed Tasks'),
+            DrawerHeader(
+                child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                'OMagotchi',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+            )),
+            const ListTile(
+              title: Text('Completed Tasks'),
             ),
             ListTile(
               title: const Text('Settings'),
@@ -75,41 +86,51 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
             child: Column(
-              // Column is also a layout widget. It takes a list of children and
-              // arranges them vertically. By default, it sizes itself to fit its
-              // children horizontally, and tries to be as tall as its parent.
-              //
-              // Invoke "debug painting" (press "p" in the console, choose the
-              // "Toggle Debug Paint" action from the Flutter Inspector in Android
-              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-              // to see the wireframe for each widget.
-              //
-              // Column has various properties to control how it sizes itself and
-              // how it positions its children. Here we use mainAxisAlignment to
-              // center the children vertically; the main axis here is the vertical
-              // axis because Columns are vertical (the cross axis would be
-              // horizontal).
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Spacer(),
-                const Text(
-                  'Name...',
+                Text(
+                  avatar.name,
                 ),
                 GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => StatsPage(
-                          avatar: avatar))),
-                  child: Hero(
+                      builder: (context) => StatsPage(avatar: avatar))),
+                  onDoubleTap: () =>
+                      Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                    setState(() {
+                      positionCurve = Curves.easeOutSine;
+                      avatarPosition = avatarPosition == 100 ? 0 : 100;
+                    });
+                    if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
+                  }),
+                  onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                    setState(() {
+                      positionCurve = Curves.bounceInOut;
+                      avatarPosition = avatarPosition == 100 ? 0 : 100;
+                    });
+                    if (timer.tick == 6) {
+                      timer.cancel();
+                    } // stop jumping after 3 jumps
+                  }),
+                  child: Container(
+                    height: 616,
+                    width: 700,
+                    child: Hero(
                     tag: 'omagotchi',
-                    child: Image.network(
-                        'https://images.cults3d.com/VZbUtir7YbI0hWo40lcqHoMZcXM=/516x516/filters:format(webp)/https://files.cults3d.com/uploaders/14743537/illustration-file/de3bc5be-56ff-416d-92c2-cb8fd0a8c622/PIC1.jpg'),
+                    child: Stack(children: [
+                        AnimatedPositioned(
+                          bottom: avatarPosition,
+                          curve: positionCurve,
+                          duration: const Duration(milliseconds: 200),
+                          child: Image.asset('assets/images/default_OMi.webp'),
+                        ),
+                      ]),
+                    ),
                   ),
                 ),
                 Text(
-                  'Mood',
+                  avatar.mood,
                 ),
                 const Spacer(),
                 Task(
