@@ -43,32 +43,32 @@ class StatsPageState extends State<StatsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
-              child: Hero(
-      tag: 'omagotchi',
-      child: Container(
-        height: 129,
-        width: 129,
-        child: Stack(children: [
-            AnimatedPositioned(
-              height: 129,
-              width: 129,
-              duration: const Duration(milliseconds: 200),
-              child: Image.asset('assets/images/default_OMi.webp'),
-            ),
-        ]),
-      )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: Hero(
+        tag: 'omagotchi',
+        child: Container(
+          height: 129,
+          width: 129,
+          child: Stack(children: [
+              AnimatedPositioned(
+                height: 129,
+                width: 129,
+                duration: const Duration(milliseconds: 200),
+                child: Image.asset('assets/images/dragon-sitting.png'),
+              ),
+          ]),
+        )),
     ),
-            const Spacer(),
-            Center(
-              child: Text('Stats Page'),
-            ),
-          ],
-        ),
+              const Spacer(),
+              Center(
+                child: Text('Stats Page'),
+              ),
+            ],
+          ),
       ),
     );
   }

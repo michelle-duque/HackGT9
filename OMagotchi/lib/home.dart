@@ -45,106 +45,114 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          shape: const BeveledRectangleBorder(),
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.transparent),
-      drawer: Drawer(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(50),
-                bottomRight: Radius.circular(50))),
-        child: ListView(
-          children: [
-            DrawerHeader(
-                child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                'OMagotchi',
-                style: Theme.of(context).textTheme.displaySmall,
+    return Container(
+      decoration: const BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/images/background-1.png'),
+    fit: BoxFit.cover
+    )
+    ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            shape: const BeveledRectangleBorder(),
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            backgroundColor: Colors.transparent),
+        drawer: Drawer(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(50),
+                  bottomRight: Radius.circular(50))),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  'OMagotchi',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              )),
+              const ListTile(
+                title: Text('Completed Tasks'),
               ),
-            )),
-            const ListTile(
-              title: Text('Completed Tasks'),
-            ),
-            ListTile(
-              title: const Text('Settings'),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SettingsPage())),
-            ),
-            const ListTile(
-              title: Text('More features coming soon'),
-            )
-          ],
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Spacer(),
-                Text(
-                  avatar.name,
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => StatsPage(avatar: avatar))),
-                  onDoubleTap: () =>
-                      Timer.periodic(const Duration(milliseconds: 200), (timer) {
-                    setState(() {
-                      positionCurve = Curves.easeOutSine;
-                      avatarPosition = avatarPosition == 100 ? 0 : 100;
-                    });
-                    if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
-                  }),
-                  onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
-                    setState(() {
-                      positionCurve = Curves.bounceInOut;
-                      avatarPosition = avatarPosition == 100 ? 0 : 100;
-                    });
-                    if (timer.tick == 6) {
-                      timer.cancel();
-                    } // stop jumping after 3 jumps
-                  }),
-                  child: Container(
-                    height: 616,
-                    width: 700,
-                    child: Hero(
-                    tag: 'omagotchi',
-                    child: Stack(children: [
-                        AnimatedPositioned(
-                          bottom: avatarPosition,
-                          curve: positionCurve,
-                          duration: const Duration(milliseconds: 200),
-                          child: Image.asset('assets/images/default_OMi.webp'),
-                        ),
-                      ]),
-                    ),
-                  ),
-                ),
-                Text(
-                  avatar.mood,
-                ),
-                const Spacer(),
-                Task(
-                    title: 'First task',
-                    description:
-                        'this is a very helpful mindfulness task that you must complete so that your Omagotchi won'
-                        't go into CS mode.',
-                    totalPoints: 500,
-                    pointsCollected: 50)
-              ],
-            ),
+              ListTile(
+                title: const Text('Settings'),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const SettingsPage())),
+              ),
+              const ListTile(
+                title: Text('More features coming soon'),
+              )
+            ],
           ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Spacer(),
+                  Text(
+                    avatar.name,
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => StatsPage(avatar: avatar))),
+                    onDoubleTap: () =>
+                        Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                      setState(() {
+                        positionCurve = Curves.easeOutSine;
+                        avatarPosition = avatarPosition == 100 ? 0 : 100;
+                      });
+                      if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
+                    }),
+                    onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                      setState(() {
+                        positionCurve = Curves.bounceInOut;
+                        avatarPosition = avatarPosition == 100 ? 0 : 100;
+                      });
+                      if (timer.tick == 6) {
+                        timer.cancel();
+                      } // stop jumping after 3 jumps
+                    }),
+                    child: Container(
+                      height: 616,
+                      width: 700,
+                      child: Hero(
+                      tag: 'omagotchi',
+                      child: Stack(children: [
+                          AnimatedPositioned(
+                            bottom: avatarPosition,
+                            curve: positionCurve,
+                            duration: const Duration(milliseconds: 200),
+                            child: Image.asset('assets/images/dragon-sitting.png'),
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    avatar.mood,
+                  ),
+                  const Spacer(),
+                  Task(
+                      title: 'First task',
+                      description:
+                          'this is a very helpful mindfulness task that you must complete so that your Omagotchi won'
+                          't go into CS mode.',
+                      totalPoints: 500,
+                      pointsCollected: 50)
+                ],
+              ),
+            ),)
+          ),
+        ),
     );
   }
 }
