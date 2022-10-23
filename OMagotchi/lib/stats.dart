@@ -102,7 +102,12 @@ class StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+        decoration: const BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage('assets/images/background-1.png'),
+    fit: BoxFit.cover)),
+    child: Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,6 +176,6 @@ class StatsPageState extends State<StatsPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
