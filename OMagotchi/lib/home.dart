@@ -94,61 +94,63 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Spacer(),
-                  Text(
-                    avatar.name,
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => StatsPage(avatar: avatar))),
-                    onDoubleTap: () =>
-                        Timer.periodic(const Duration(milliseconds: 200), (timer) {
-                      setState(() {
-                        positionCurve = Curves.easeOutSine;
-                        avatarPosition = avatarPosition == 100 ? 0 : 100;
-                      });
-                      if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
-                    }),
-                    onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
-                      setState(() {
-                        positionCurve = Curves.bounceInOut;
-                        avatarPosition = avatarPosition == 100 ? 0 : 100;
-                      });
-                      if (timer.tick == 6) {
-                        timer.cancel();
-                      } // stop jumping after 3 jumps
-                    }),
-                    child: Container(
-                      height: 616,
-                      width: 700,
-                      child: Hero(
-                      tag: 'omagotchi',
-                      child: Stack(children: [
-                          AnimatedPositioned(
-                            bottom: avatarPosition,
-                            curve: positionCurve,
-                            duration: const Duration(milliseconds: 200),
-                            child: Image.asset('assets/images/dragon-sitting.png'),
-                          ),
-                        ]),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    //const Spacer(),
+                    Text(
+                      avatar.name,
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => StatsPage(avatar: avatar))),
+                      onDoubleTap: () =>
+                          Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                        setState(() {
+                          positionCurve = Curves.easeOutSine;
+                          avatarPosition = avatarPosition == 100 ? 0 : 100;
+                        });
+                        if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
+                      }),
+                      onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
+                        setState(() {
+                          positionCurve = Curves.bounceInOut;
+                          avatarPosition = avatarPosition == 100 ? 0 : 100;
+                        });
+                        if (timer.tick == 6) {
+                          timer.cancel();
+                        } // stop jumping after 3 jumps
+                      }),
+                      child: Container(
+                        height: 616,
+                        width: 700,
+                        child: Hero(
+                        tag: 'omagotchi',
+                        child: Stack(children: [
+                            AnimatedPositioned(
+                              bottom: avatarPosition,
+                              curve: positionCurve,
+                              duration: const Duration(milliseconds: 200),
+                              child: Image.asset('assets/images/dragon-sitting.png', scale: 6),
+                            ),
+                          ]),
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    avatar.mood,
-                  ),
-                  const Spacer(),
-                  Task(
-                      title: 'First task',
-                      description:
-                          'this is a very helpful mindfulness task that you must complete so that your Omagotchi won'
-                          't go into CS mode.',
-                      totalPoints: 500,
-                      pointsCollected: 50)
-                ],
+                    Text(
+                      avatar.mood,
+                    ),
+                    //const Spacer(),
+                    Task(
+                        title: 'First task',
+                        description:
+                            'this is a very helpful mindfulness task that you must complete so that your Omagotchi won'
+                            't go into CS mode.',
+                        totalPoints: 500,
+                        pointsCollected: 50)
+                  ],
+                ),
               ),
             ),)
           ),
