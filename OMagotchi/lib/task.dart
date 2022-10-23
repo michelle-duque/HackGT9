@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Task extends StatefulWidget {
-  Task({required this.title, required this.description, required this.totalPoints, required this.pointsCollected});
+  const Task({super.key, required this.title, required this.description, required this.totalPoints, required this.pointsCollected});
 
-  String description;
-  String title;
-  int totalPoints;
-  int pointsCollected; // the points collected so far
+  final String description;
+  final String title;
+  final int totalPoints;
+  final int pointsCollected; // the points collected so far
+  @override
   State<Task> createState() => TaskState();
 }
 
@@ -19,15 +20,15 @@ class TaskState extends State<Task> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold),),
+            Text(widget.title, style: const TextStyle(fontWeight: FontWeight.bold),),
             Text(widget.description),
             Stack(
               alignment: Alignment.center,
               children: [ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
                   child: LinearProgressIndicator(
-                    value: widget.pointsCollected / widget.totalPoints, 
-                    minHeight: 20,),
-              borderRadius: BorderRadius.circular(8),),
+                    value: widget.pointsCollected / widget.totalPoints,
+                    minHeight: 20,),),
               Center( child: Text('${widget.pointsCollected}/${widget.totalPoints}'),)]
             )],
         ),

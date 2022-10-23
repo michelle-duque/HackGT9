@@ -85,7 +85,7 @@ extension StringExtension on String {
 }
 
 class StatsPage extends StatefulWidget {
-  StatsPage({required avatar}) : _avatar = avatar;
+  const StatsPage({super.key, required avatar}) : _avatar = avatar;
 
   final Omagotchi _avatar;
 

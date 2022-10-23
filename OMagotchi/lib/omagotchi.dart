@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'stats.dart';
-
-import 'animal.dart';
-
 class Omagotchi {
   Omagotchi({required name, required neutral, happy})
       :
