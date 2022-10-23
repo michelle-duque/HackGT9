@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Omagotchi avatar = Omagotchi(name: 'Chester', imagePath: 'no image');
   double avatarPosition = 0;
   Curve positionCurve = Curves.easeOutSine;
-  List<Widget> tasks = [Task(
+  late List<Widget> tasks = [Task(
       title: 'First task',
       description:
       'this is a very helpful mindfulness task that you must complete so that your Omagotchi won'
@@ -61,11 +61,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Container(
       decoration: const BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage('assets/images/background-1.png'),
-    fit: BoxFit.cover
-    )
-    ),
+        image: DecorationImage(
+          image: AssetImage('assets/images/background-1.png'),
+          fit: BoxFit.cover
+        )
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -125,7 +125,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           positionCurve = Curves.easeOutSine;
                           avatarPosition = avatarPosition == 100 ? 0 : 100;
                         });
-                        if (timer.tick == 6) timer.cancel(); // stop jumping after 3 jumps
+                        if (timer.tick == 6) {
+                          setState(() {
+                            timer.cancel();
+                            avatar.stats.happiness += 5;
+                            avatar.setMood();
+                          });
+                        } // stop jumping after 3 jumps
                       }),
                       onLongPress: () => Timer.periodic(const Duration(milliseconds: 200), (timer) {
                         setState(() {
@@ -133,11 +139,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           avatarPosition = avatarPosition == 100 ? 0 : 100;
                         });
                         if (timer.tick == 6) {
-                          timer.cancel();
+                          setState(() {
+                            avatar.stats.happiness += 5;
+                            avatar.setMood();
+                            timer.cancel();
+                          });
                         } // stop jumping after 3 jumps
                       }),
                       child: SizedBox(
-                        height: 300,
+                        height: 350,
                         width: 300,
                         child: Hero(
                         tag: 'omagotchi',
@@ -150,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               bottom: avatarPosition,
                               curve: positionCurve,
                               duration: const Duration(milliseconds: 200),
-                              child: Image.asset('assets/images/dragon-sitting.png', fit: BoxFit.fitHeight,),
+                              child: Image.asset(avatar.imagePath, fit: BoxFit.fitHeight, scale: 5),
                             ),
                           ]),
                         ),

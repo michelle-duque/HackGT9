@@ -9,7 +9,6 @@ class Stats {
   int _alertness = 100;
   int _thirstiness = 0;
   int _dirtiness = 0;
-
   Map<String, int> toMap() {
     return {'Level': _level, 'Happiness': _happiness, 'Hunger': _hunger, 'Thirstiness': _thirstiness,
       'Dirtiness': _dirtiness, 'Alertness': _alertness};
@@ -49,62 +48,71 @@ class StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: Hero(
-        tag: 'omagotchi',
-        child: Center(
-          child: SizedBox(
-            height: 200,
-            width: 200,
-            child: Stack(
-              clipBehavior: Clip.none,
-                children: [
-                AnimatedPositioned(
-                  height: 200,
-                  width: 200,
-                  duration: const Duration(milliseconds: 200),
-                  child: Image.asset('assets/images/dragon-flying.png', fit: BoxFit.fitWidth,),
-                ),
-            ]),
-          ),
-        )),
-    ),
-            Expanded(
-              flex: 5,
-              child: CircleList(
-                showInitialAnimation: true,
-                centerWidget: Center(child: Text('STATS')),
-                childrenPadding: 0,
-                innerRadius: 75,
-                origin: Offset.zero,
-                children: List.generate(statList.length, (index) =>
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Text('${statList[index].key} ${statList[index].value}'),
-                      TweenAnimationBuilder(
-                        curve: Curves.easeOutSine,
-                        tween: Tween<double>(begin: 0, end: statList[index].value / 100),
-                          duration: const Duration(seconds: 1),
-                          builder: (context, double tween, child) => SizedBox(
-                            height: 200,
-                              width: 200,
-                              child: CircularProgressIndicator(value: tween, strokeWidth: 10, backgroundColor: Colors.blue[100],))),
-                    ],
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/background-1.png'),
+              fit: BoxFit.cover
+          )
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Hero(
+          tag: 'omagotchi',
+          child: Center(
+            child: SizedBox(
+              height: 200,
+              width: 200,
+              child: Stack(
+                clipBehavior: Clip.none,
+                  children: [
+                  AnimatedPositioned(
+                    height: 200,
+                    width: 200,
+                    duration: const Duration(milliseconds: 200),
+                    child: Image.asset('assets/images/dragon-flying.png', fit: BoxFit.fitWidth,),
                   ),
-                )),
-              ),
-            ), const Spacer()
-            ],
-          ),
+              ]),
+            ),
+          )),
+      ),
+              Container(
+                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withOpacity(0.3)),
+                child: CircleList(
+                  showInitialAnimation: true,
+                  centerWidget: Center(child: Text('STATS')),
+                  childrenPadding: 0,
+                  innerRadius: 75,
+                  origin: Offset.zero,
+                  children: List.generate(statList.length, (index) =>
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Text('${statList[index].key} ${statList[index].value}'),
+                        TweenAnimationBuilder(
+                          curve: Curves.easeOutSine,
+                          tween: Tween<double>(begin: 0, end: statList[index].value / 100),
+                            duration: const Duration(seconds: 1),
+                            builder: (context, double tween, child) => SizedBox(
+                              height: 200,
+                                width: 200,
+                                child: CircularProgressIndicator(value: tween, strokeWidth: 10, backgroundColor: Colors.blue[100],))),
+                      ],
+                    ),
+                  )),
+                ),
+              ), const Spacer()
+              ],
+            ),
+        ),
       ),
     );
   }

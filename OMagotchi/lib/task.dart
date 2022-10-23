@@ -9,7 +9,6 @@ class Task extends StatefulWidget {
   int pointsCollected; // the points collected so far
   State<Task> createState() => TaskState();
 }
-
 class TaskState extends State<Task> {
   @override
   Widget build(BuildContext context) {
