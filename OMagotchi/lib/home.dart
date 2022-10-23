@@ -27,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Omagotchi avatar = Omagotchi(name: 'Chester', imagePath: 'no image');
+  Omagotchi avatar = Omagotchi(name: 'Chester', imagePath: 'assets/images/dragon-sitting.png');
   double avatarPosition = 0;
   Curve positionCurve = Curves.easeOutSine;
   late List<Widget> tasks = [Task(
@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-        ),
+        )
     );
   }
 }

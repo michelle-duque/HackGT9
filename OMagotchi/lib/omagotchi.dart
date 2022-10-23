@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'stats.dart';
 
 import 'animal.dart';
@@ -7,8 +5,7 @@ import 'animal.dart';
 class Omagotchi {
   Omagotchi({required name, required imagePath}) :
         _name = name,
-        _imagePath = imagePath == 'no image' ? 'assets/images/dragon-sitting.png' : imagePath;
-        //_happyImagePath = "";
+        _imagePath = imagePath;
 
   String _name;
   final Stats _stats = Stats();
