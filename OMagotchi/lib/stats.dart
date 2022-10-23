@@ -108,6 +108,7 @@ class StatsPageState extends State<StatsPage> {
         image: AssetImage('assets/images/background-1.png'),
     fit: BoxFit.cover)),
     child: Scaffold(
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
