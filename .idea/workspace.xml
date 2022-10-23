@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6faf9bb2-c556-43ca-8068-15ebd4d6d6c6" name="Changes" comment="">
+    <list default="true" id="6faf9bb2-c556-43ca-8068-15ebd4d6d6c6" name="Changes" comment="Fix the Image Display of OMagotchi avatar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMagotchi/lib/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/lib/home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMagotchi/lib/omagotchi.dart" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/lib/omagotchi.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMagotchi/lib/stats.dart" beforeDir="false" afterPath="$PROJECT_DIR$/OMagotchi/lib/stats.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +67,14 @@
       <option name="presentableId" value="Default" />
       <updated>1666402706940</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fix the Image Display of OMagotchi avatar">
+      <created>1666489264924</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666489264924</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,5 +87,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix the Image Display of OMagotchi avatar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the Image Display of OMagotchi avatar" />
   </component>
 </project>
