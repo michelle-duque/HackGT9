@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'stats.dart';
 
 import 'animal.dart';
@@ -5,7 +7,7 @@ import 'animal.dart';
 class Omagotchi {
   Omagotchi({required name, required imagePath}) :
         _name = name,
-        _imagePath = imagePath;
+        _imagePath = imagePath == 'no image' ? 'assets/images/dragon-sitting.png' : imagePath;
         //_happyImagePath = "";
 
   String _name;
@@ -22,12 +24,18 @@ class Omagotchi {
       _mood = "Depressed";
     } else if (happiness >= 25 && happiness < 50) {
       _mood = "Neutral";
+      _imagePath = 'assets/images/dragon-neutral.png';
     } else if (happiness >= 50 && happiness < 75) {
       _mood = "Happy";
+      _imagePath = 'assets/images/dragon-happy.png';
     } else {
       _stats.happiness = happiness >= 100 ? 100 : happiness;
       _mood = "Exuberant";
     }
+  }
+
+  void fly(String path) {
+    _imagePath = path;
   }
 
   String get name => _name;

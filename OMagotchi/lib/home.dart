@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 bottom: avatarPosition,
                                 curve: positionCurve,
                                 duration: const Duration(milliseconds: 200),
-                                child: Image.asset('assets/images/dragon-sitting.png', scale: 10),
+                                child: Image.asset(avatar.imagePath, scale: 10),
                               ),
                             ]),
                         ),
