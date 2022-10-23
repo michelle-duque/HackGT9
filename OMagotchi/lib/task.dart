@@ -13,7 +13,6 @@ class Task extends StatefulWidget {
 class TaskState extends State<Task> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Padding(
