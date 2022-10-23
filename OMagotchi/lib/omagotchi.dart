@@ -11,6 +11,7 @@ class Omagotchi {
     _name = json['name'];
     _neutralImage = json['neutralImage'];
     _happyImage = json['happyImage'];
+    _mood = json['mood'];
   }
 
   late String _name;
