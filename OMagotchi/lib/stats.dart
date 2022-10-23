@@ -129,8 +129,8 @@ class StatsPageState extends State<StatsPage> {
                     ),
                   )),
             ),
-            Expanded(
-              flex: 5,
+            Container(
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withOpacity(.3)),
               child: CircleList(
                 showInitialAnimation: true,
                 animationSetting: AnimationSetting(curve: Curves.easeOutCirc),

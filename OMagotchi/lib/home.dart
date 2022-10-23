@@ -241,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                 } // stop jumping after 3 jumps
                               }),
                               child: SizedBox(
-                                height: 300,
+                                height: 350,
                                 width: 300,
                                 child: Hero(
                                   tag: 'omagotchi',
